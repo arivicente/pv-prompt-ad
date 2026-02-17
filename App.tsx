@@ -10,12 +10,14 @@ import {
   TrendingUp, 
   XCircle, 
   Sparkles, 
-  Play, 
-  Users, 
   MousePointer2, 
   FileText, 
-  Volume2, 
-  Maximize 
+  HelpCircle,
+  BadgeCheck,
+  User,
+  Zap,
+  Download,
+  PlayCircle
 } from 'lucide-react';
 
 // --- Reusable Components ---
@@ -29,7 +31,7 @@ const CTAButton: React.FC<{ children: React.ReactNode; className?: string }> = (
 
 const Section: React.FC<{ children: React.ReactNode; className?: string; alternate?: boolean }> = ({ children, className = "", alternate }) => (
   <section className={`py-12 md:py-20 px-5 ${alternate ? 'bg-[#101A2E]' : 'bg-[#0B1220]'} ${className}`}>
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       {children}
     </div>
   </section>
@@ -38,16 +40,16 @@ const Section: React.FC<{ children: React.ReactNode; className?: string; alterna
 const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border border-white/5 bg-[#101A2E] rounded-xl mb-3 overflow-hidden">
+    <div className="border border-white/5 bg-[#101A2E] rounded-xl mb-4 overflow-hidden">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-5 flex justify-between items-start text-left focus:outline-none"
+        className="w-full p-6 flex justify-between items-start text-left focus:outline-none transition-colors hover:bg-white/5"
       >
-        <span className="text-sm md:text-base font-medium text-white pr-4">{question}</span>
+        <span className="text-sm md:text-base font-semibold text-white pr-4">{question}</span>
         <ChevronDown className={`w-5 h-5 text-[#7B5CFF] transition-transform duration-300 mt-1 shrink-0 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 border-t border-white/5' : 'max-h-0'}`}>
-        <p className="p-5 text-[#A9B4C7] leading-relaxed text-xs md:text-sm">{answer}</p>
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <p className="p-6 pt-0 text-[#A9B4C7] leading-relaxed text-xs md:text-sm border-t border-white/5">{answer}</p>
       </div>
     </div>
   );
@@ -64,24 +66,26 @@ export default function App() {
     document.head.appendChild(script);
 
     return () => {
-      document.head.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
   return (
     <div className="font-sans text-white bg-[#0B1220] antialiased">
       
-      {/* HERO SECTION */}
-      <Section className="pt-6 md:pt-10 pb-12 text-center">
+      {/* HERO SECTION - MANTIDA INTACTA */}
+      <Section className="pt-6 md:pt-10 pb-6 md:pb-10 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#7B5CFF] text-[9px] md:text-[10px] font-bold mb-6 uppercase tracking-widest whitespace-nowrap">
-          <XCircle className="w-3 h-3" /> Anúncios falham por falta de atenção.
+          <BadgeCheck className="w-3 h-3" /> Para proprietários de ofertas de baixo custo
         </div>
         
-        <h1 className="font-heading text-xl md:text-3xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
-          Aumente as vendas do seu <span className="text-[#7B5CFF]">low ticket</span> usando modelos de anúncios comprovados para criar e escalar campanhas de alta conversão de forma rápida e direta.
+        <h1 className="font-heading text-xl md:text-4xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
+          Aumente as vendas do seu <span className="text-[#7B5CFF]">funil de baixo custo</span> com estes modelos de anúncios criativos comprovados.
         </h1>
         
-        <p className="text-[10px] sm:text-xs md:text-base text-[#A9B4C7] mb-8 max-w-none mx-auto leading-relaxed px-4 whitespace-nowrap font-medium">
+        <p className="text-xs md:text-lg text-[#A9B4C7] mb-8 max-w-2xl mx-auto leading-relaxed px-4 font-medium">
           Basta colar, adicionar os detalhes da sua oferta e gerar.
         </p>
 
@@ -91,245 +95,405 @@ export default function App() {
           <vturb-smartplayer id="vid-6993c734a498670b2aa28675" style={{ display: 'block', margin: '0 auto', width: '100%' }}></vturb-smartplayer>
         </div>
 
-        <div className="flex flex-col items-center gap-4 mb-14">
-          <CTAButton className="w-full max-w-md">QUERO ACESSO IMEDIATO</CTAButton>
-          <div className="flex items-center gap-2 text-[#A9B4C7] text-[9px] uppercase tracking-wider mt-2">
-            <ShieldCheck className="w-3 h-3 text-green-500" /> garantia de reembolso de 7 dias
+        <div className="flex flex-col items-center gap-4 mb-2">
+          <CTAButton className="w-full max-w-md">Quero todos os 10 prompts por R$ 27</CTAButton>
+          <div className="flex items-center gap-2 text-[#A9B4C7] text-[10px] uppercase tracking-wider mt-4">
+            <ShieldCheck className="w-3 h-3 text-white/40" /> Garantia de reembolso de 7 dias
           </div>
         </div>
+      </Section>
 
-        <div className="relative max-w-4xl mx-auto aspect-video bg-[#101A2E] rounded-2xl border border-white/10 shadow-[0_0_50px_rgba(123,92,255,0.15)] flex items-center justify-center overflow-hidden">
-          <div className="p-8 text-center">
-            <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
-              <div className="bg-[#0B1220] p-6 rounded-xl border border-white/10 w-full md:w-64 text-left">
-                <p className="text-[10px] text-[#7B5CFF] font-bold mb-2 uppercase tracking-tighter">Prompt Input</p>
-                <div className="space-y-2 opacity-40">
-                  <div className="h-2 w-full bg-white/10 rounded"></div>
-                  <div className="h-2 w-3/4 bg-white/10 rounded"></div>
-                  <div className="h-2 w-full bg-white/10 rounded"></div>
+      {/* --- ESTRUTURA APÓS A HERO --- */}
+
+      {/* STATS SECTION - DESIGN HARMONIZADO BASEADO NA IMAGEM */}
+      <Section alternate className="text-center py-20 md:py-32 border-y border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-12 md:mb-16 leading-tight tracking-tight">
+            Esses anúncios contribuíram para...
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tighter">
+                Mais de R$ 715 mil
+              </span>
+              <span className="text-[#A9B4C7] text-sm md:text-base font-medium opacity-80">
+                Vendas de Low Ticket
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tighter">
+                Mais de 18.000
+              </span>
+              <span className="text-[#A9B4C7] text-sm md:text-base font-medium opacity-80">
+                Produtos Vendidos
+              </span>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* O QUE VOCÊ RECEBE */}
+      <Section className="py-24">
+        <div className="text-center mb-16">
+          <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">O QUE ESTÁ INCLUÍDO</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Eis o que você recebe</h2>
+          <p className="text-[#A9B4C7] max-w-2xl mx-auto text-sm md:text-base">Tudo o que você precisa para criar imagens de anúncios de alta conversão em minutos.</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative group">
+            <div className="absolute inset-0 bg-[#7B5CFF]/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-[#7B5CFF]/30 transition-all"></div>
+            <div className="relative bg-gradient-to-br from-[#101A2E] to-[#0B1220] p-1 border border-white/10 rounded-2xl shadow-2xl">
+              <div className="bg-[#0B1220] rounded-xl overflow-hidden aspect-[4/5] flex items-center justify-center p-8">
+                <div className="w-full h-full border-4 border-[#7B5CFF]/40 rounded-lg flex flex-col justify-end p-6 bg-[#0B1220] relative overflow-hidden">
+                   <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#7B5CFF]/20 blur-3xl rounded-full"></div>
+                   <h4 className="text-2xl font-black leading-tight mb-2">LOW TICKET AD <br/><span className="text-[#7B5CFF]">PROMPTPLATES</span></h4>
+                   <p className="text-[10px] text-[#A9B4C7] uppercase tracking-widest font-bold">Plug-and-play image prompt templates</p>
                 </div>
               </div>
-              <ArrowRight className="w-8 h-8 text-[#7B5CFF] hidden md:block" />
-              <div className="bg-white/5 p-2 rounded-xl border border-white/10">
-                <div className="w-full md:w-64 aspect-square bg-gradient-to-br from-[#7B5CFF]/20 to-transparent rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-12 h-12 text-[#7B5CFF]" />
-                </div>
-              </div>
-            </div>
-            <p className="mt-8 text-[#A9B4C7] text-xs font-bold uppercase tracking-widest">Mockup: Do Prompt ao Criativo em Segundos</p>
-          </div>
-        </div>
-      </Section>
-
-      {/* Seção 2: Demonstração Visual */}
-      <Section alternate>
-        <div className="text-center mb-16">
-          <h2 className="font-heading text-2xl md:text-3xl mb-4 font-bold tracking-tight">De <span className="text-[#7B5CFF]">Textos Travados</span> a <span className="text-[#7B5CFF]">Anúncios Magnéticos</span></h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          <div className="bg-[#0B1220] p-8 rounded-3xl border border-white/5 flex flex-col justify-between">
-            <div>
-              <span className="text-red-400 text-[10px] font-bold uppercase tracking-widest mb-4 block">Antes: O Problema</span>
-              <h3 className="text-xl font-bold mb-4">Tentando criar no escuro</h3>
-              <p className="text-[#A9B4C7] text-sm leading-relaxed mb-6">Horas tentando segmentar, mudando públicos, mas com criativos que ninguém clica. Dinheiro jogado fora em testes sem lógica.</p>
-            </div>
-            <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-xl flex items-center gap-3">
-              <XCircle className="text-red-500 w-5 h-5 shrink-0" />
-              <span className="text-red-400 text-xs font-medium">Anúncios ignorados pelo público.</span>
             </div>
           </div>
-          <div className="bg-[#101A2E] p-8 rounded-3xl border border-[#7B5CFF]/20 shadow-[0_0_30px_rgba(123,92,255,0.05)] flex flex-col justify-between">
-            <div>
-              <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-widest mb-4 block">Depois: A Solução</span>
-              <h3 className="text-xl font-bold mb-4">Estrutura que Converte</h3>
-              <p className="text-[#A9B4C7] text-sm leading-relaxed mb-6">Modelos validados que forçam a atenção. Você só insere o seu produto e a IA gera o ângulo perfeito para vender.</p>
-            </div>
-            <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-xl flex items-center gap-3">
-              <CheckCircle2 className="text-green-500 w-5 h-5 shrink-0" />
-              <span className="text-green-400 text-xs font-medium">Cliques qualificados e vendas no dashboard.</span>
-            </div>
-          </div>
-        </div>
-      </Section>
 
-      {/* Seção 3: O Problema Real */}
-      <Section>
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-heading text-2xl md:text-3xl mb-8 font-bold">Por que a maioria dos anúncios de <span className="text-red-500">Low Ticket</span> falha?</h2>
-          <div className="space-y-6 text-[#A9B4C7] text-sm md:text-base text-left bg-[#101A2E] p-8 md:p-12 rounded-[2rem] border border-white/5">
-            <p>Não é a segmentação. Não é o orçamento. É a <strong>atenção.</strong></p>
-            <p>Em um feed infinito, se o seu anúncio não interrompe o padrão do usuário nos primeiros 2 segundos, você já perdeu a venda.</p>
-            <p>A maioria das pessoas foca na ferramenta, mas esquece da <strong>estrutura de copy visual.</strong> Tentativa e erro custa caro. Você está pagando para aprender o que o mercado já validou.</p>
-            <div className="pt-6 border-t border-white/5 font-bold text-white italic">
-              "Atenção é o novo petróleo, e os nossos prompts são a broca de alta precisão."
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Seção 4: Mecanismo */}
-      <Section alternate>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { 
-              title: "Estrutura Validada", 
-              desc: "Não inventamos nada. Transformamos estruturas que já geraram milhões em modelos replicáveis.",
-              icon: <Layout className="w-8 h-8 text-[#7B5CFF]" />
-            },
-            { 
-              title: "Fim da Tentativa e Erro", 
-              desc: "Pare de queimar dinheiro testando criativos amadores. Use o que a lógica de conversão exige.",
-              icon: <TrendingUp className="w-8 h-8 text-[#7B5CFF]" />
-            },
-            { 
-              title: "Velocidade de Escala", 
-              desc: "Gere 10, 20, 50 variações de anúncios em minutos. Teste rápido, escale o que funciona.",
-              icon: <Clock className="w-8 h-8 text-[#7B5CFF]" />
-            }
-          ].map((item, i) => (
-            <div key={i} className="p-8 bg-[#0B1220] rounded-2xl border border-white/5">
-              <div className="mb-6">{item.icon}</div>
-              <h4 className="font-bold text-lg mb-3 tracking-tight">{item.title}</h4>
-              <p className="text-[#A9B4C7] text-xs leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Seção 5: Como Funciona */}
-      <Section>
-        <div className="text-center mb-16">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold">Simples como 1, 2, 3</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          <div className="hidden md:block absolute top-10 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-[#7B5CFF]/30 to-transparent"></div>
-          {[
-            { step: "01", title: "Copiar", desc: "Escolha um dos nossos prompts estratégicos no guia.", icon: <FileText className="w-6 h-6" /> },
-            { step: "02", title: "Colar", desc: "Insira os detalhes do seu produto ou oferta.", icon: <MousePointer2 className="w-6 h-6" /> },
-            { step: "03", title: "Gerar", desc: "Pronto! Seus anúncios de alta conversão estão criados.", icon: <Sparkles className="w-6 h-6" /> }
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center text-center relative z-10">
-              <div className="w-16 h-16 bg-[#7B5CFF] rounded-full flex items-center justify-center mb-6 shadow-xl shadow-[#7B5CFF]/20 font-bold text-xl">
-                {item.icon}
-              </div>
-              <h4 className="font-bold text-lg mb-2">{item.title}</h4>
-              <p className="text-[#A9B4C7] text-sm leading-relaxed max-w-[200px]">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Seção 6: Funciona Mesmo Se */}
-      <Section alternate>
-        <div className="max-w-2xl mx-auto bg-[#0B1220] p-8 md:p-12 rounded-3xl border border-white/5">
-          <h2 className="font-heading text-2xl mb-10 text-center font-bold">Isso funciona mesmo se você...</h2>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="space-y-4">
             {[
-              "Não sabe nada de copy ou design",
-              "Não se considera uma pessoa criativa",
-              "Está começando do absoluto zero no tráfego",
-              "Está travado em anúncios que não vendem",
-              "Já tentou outros métodos e não teve resultados",
-              "Tem pouco orçamento para testar"
-            ].map((text, i) => (
-              <div key={i} className="flex items-center gap-4 p-4 bg-[#101A2E] rounded-xl border border-white/5">
-                <CheckCircle2 className="w-5 h-5 text-[#7B5CFF] shrink-0" />
-                <span className="text-sm text-[#A9B4C7] font-medium">{text}</span>
+              { title: "10 PromptPlates Plug-and-Play", desc: "Projetadas especificamente para proprietários de ofertas de baixo custo.", icon: <CheckCircle2 className="w-5 h-5 text-green-500" /> },
+              { title: "Compatível com ChatGPT, Nano Banana e muito mais", desc: "Sem necessidade de ferramentas especiais.", icon: <CheckCircle2 className="w-5 h-5 text-green-500" /> },
+              { title: "Sem necessidade de engenharia avançada", desc: "Basta colar e adicionar os detalhes da sua oferta.", icon: <CheckCircle2 className="w-5 h-5 text-green-500" /> },
+              { title: "Download instantâneo do PDF", desc: "Comece em minutos após a compra.", icon: <Download className="w-5 h-5 text-green-500" /> },
+              { title: "BÔNUS: Treinamento em vídeo incluído", desc: "Passo a passo com exemplos reais.", icon: <PlayCircle className="w-5 h-5 text-orange-400" />, isBonus: true },
+              { title: "Estilos diferentes para cada caso de uso", desc: "Depoimentos, benefícios, urgência e muito mais.", icon: <CheckCircle2 className="w-5 h-5 text-green-500" /> }
+            ].map((item, idx) => (
+              <div key={idx} className={`p-4 rounded-xl border border-white/5 bg-[#101A2E]/50 flex gap-4 items-start ${item.isBonus ? 'border-orange-400/20' : ''}`}>
+                <div className="mt-1">{item.icon}</div>
+                <div>
+                  <h4 className="text-sm font-bold text-white mb-1">
+                    {item.isBonus && <span className="bg-orange-400 text-black text-[9px] px-1.5 py-0.5 rounded mr-2 font-black">BÔNUS</span>}
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-[#A9B4C7] leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             ))}
+
+            <div className="pt-8 text-center lg:text-left">
+               <div className="inline-flex items-center gap-4 mb-6">
+                 <span className="text-[#A9B4C7] line-through text-sm">Valor total: R$ 97</span>
+                 <span className="text-[#7B5CFF] font-bold text-2xl">R$ 27</span>
+                 <span className="text-green-400 text-[10px] font-bold bg-green-400/10 px-2 py-1 rounded">72% DE DESCONTO</span>
+               </div>
+               <CTAButton className="w-full">Obtenha acesso instantâneo — R$ 27</CTAButton>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* Seção 7: O Que Você Recebe */}
-      <Section>
+      {/* RESULTADOS REAIS */}
+      <Section alternate>
         <div className="text-center mb-16">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold">O Acesso Completo ao Método</h2>
+          <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">RESULTADOS REAIS</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Veja o que essas instruções criam</h2>
+          <p className="text-[#A9B4C7] max-w-2xl mx-auto text-sm md:text-base">Essas imagens de anúncios foram geradas usando exatamente as mesmas instruções que você encontrará no PromptPlates.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="aspect-square bg-[#0B1220] rounded-xl border border-white/10 flex items-center justify-center p-2 group cursor-pointer overflow-hidden">
+              <div className="w-full h-full bg-[#101A2E] rounded-lg transition-transform group-hover:scale-105 flex items-center justify-center relative">
+                <div className="text-[10px] font-bold opacity-20 uppercase">Exemplo de Anúncio #{i}</div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-center mt-6 text-[#A9B4C7] text-[10px] font-bold uppercase tracking-widest">Clique para ampliar</p>
+      </Section>
+
+      {/* O PROBLEMA */}
+      <Section className="py-24">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center leading-tight">Pare de perder horas com imagens de anúncios que não convertem.</h2>
+          
+          <div className="bg-[#101A2E] p-8 md:p-12 rounded-[2rem] border border-white/5 space-y-10">
+            <div>
+              <h3 className="text-lg md:text-xl font-bold mb-4">Você já tentou gerar imagens de anúncios com IA antes?</h3>
+              <p className="text-[#A9B4C7] text-sm md:text-base leading-relaxed">Talvez até tenha comprado prompts ou modelos. Mas quando você realmente os utiliza como anúncios...</p>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                "Eles parecem genéricos e não interrompem a rolagem.",
+                "A mensagem é vaga e não converte.",
+                "Eles não seguem os princípios da resposta direta.",
+                "Você passa horas ajustando prompts para obter resultados medíocres."
+              ].map((text, idx) => (
+                <div key={idx} className="flex gap-4 items-start">
+                  <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                  <p className="text-sm md:text-base text-[#A9B4C7]">{text}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-10 border-t border-white/5">
+              <p className="text-sm md:text-lg leading-relaxed text-[#A9B4C7]">
+                <strong className="text-white">A verdade é:</strong> a maioria dos prompts de IA não foi criada por pessoas que realmente gerenciam campanhas publicitárias lucrativas. Eles são criados por engenheiros de prompts que nunca gastaram um centavo em anúncios Meta.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* MECANISMO (PASSOS) */}
+      <Section alternate className="py-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Como funcionam as <span className="text-[#7B5CFF]">placas de aviso</span>?</h2>
+          <p className="text-[#A9B4C7] max-w-2xl mx-auto text-sm md:text-base">Crie imagens de anúncios de alta conversão em apenas 3 passos simples...</p>
+        </div>
+
+        <div className="space-y-24">
           {[
-            "Modelos de prompts estruturados",
-            "Estruturas de anúncios validadas",
-            "Categorias organizadas por nicho",
-            "Guia rápido de implementação",
-            "Acesso imediato após o pagamento",
-            "Atualizações e novos modelos"
-          ].map((item, i) => (
-            <div key={i} className="bg-[#101A2E] p-6 rounded-xl border border-white/5 hover:border-[#7B5CFF]/30 transition-all cursor-default">
-              <h4 className="font-bold text-sm text-white mb-2">{item}</h4>
-              <p className="text-[10px] text-[#A9B4C7] leading-relaxed">Desenvolvido para máxima performance em funis de baixo ticket.</p>
+            { 
+              step: "PASSO 01", 
+              title: "Escolha seu PromptPlate", 
+              desc: "Escolha entre 10 estilos diferentes, criados para objetivos específicos de anúncios: depoimentos, benefícios, senso de urgência e muito mais.",
+              preview: "ui-sim-1"
+            },
+            { 
+              step: "PASSO 02", 
+              title: "Colar e personalizar", 
+              desc: "Copie o texto para o ChatGPT ou sua ferramenta de IA favorita. Adicione os detalhes da sua oferta no final — e pronto.",
+              preview: "ui-sim-2"
+            },
+            { 
+              step: "PASSO 03", 
+              title: "Baixe e execute anúncios", 
+              desc: "Sua imagem de anúncio está pronta. Faça o download, carregue-a no Gerenciador de Meta Anúncios e comece a direcionar tráfego para sua oferta.",
+              preview: "ui-sim-3"
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="flex flex-col items-center">
+              <span className="bg-white text-black text-[10px] font-black px-4 py-1.5 rounded-full mb-8 tracking-widest uppercase">{item.step}</span>
+              <div className="text-center max-w-2xl mb-12">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">{item.title}</h3>
+                <p className="text-[#A9B4C7] text-sm md:text-base leading-relaxed">{item.desc}</p>
+              </div>
+              <div className="w-full max-w-2xl aspect-video bg-[#0B1220] rounded-2xl border border-white/10 p-6 relative overflow-hidden shadow-2xl">
+                 <div className="absolute top-4 left-4 flex gap-1.5">
+                   <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+                   <div className="w-2.5 h-2.5 rounded-full bg-orange-500/50"></div>
+                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+                 </div>
+                 <div className="mt-8 flex flex-col justify-center items-center h-full">
+                    {idx === 0 && (
+                      <div className="w-full space-y-2">
+                        <div className="h-10 bg-[#101A2E] rounded-md border border-white/5 flex items-center px-4 text-[10px] opacity-40">Estilo de depoimento</div>
+                        <div className="h-10 bg-[#101A2E] rounded-md border border-white/5 flex items-center px-4 text-[10px] opacity-40">Destaque do benefício</div>
+                        <div className="h-10 bg-[#7B5CFF]/10 rounded-md border border-[#7B5CFF]/30 flex items-center px-4 text-[10px] text-[#7B5CFF] font-bold">Motorista de urgência ✓</div>
+                      </div>
+                    )}
+                    {idx === 1 && (
+                      <div className="w-full space-y-4">
+                        <div className="h-20 bg-[#101A2E] rounded-md border border-white/5 p-4 text-[10px] opacity-40 text-left">Gere uma imagem de anúncio para [Minha Oferta] focada em...</div>
+                        <button className="w-full h-10 bg-[#7B5CFF] rounded-md text-[10px] font-bold">Gerar imagem →</button>
+                      </div>
+                    )}
+                    {idx === 2 && (
+                      <div className="flex flex-col items-center gap-4">
+                        <CheckCircle2 className="w-12 h-12 text-green-500/30" />
+                        <div className="text-[10px] text-green-500 font-bold uppercase tracking-widest">Imagem pronta!</div>
+                        <button className="bg-[#7B5CFF] px-6 py-2 rounded-md text-[10px] font-bold flex gap-2 items-center"><Download className="w-3 h-3"/> Download</button>
+                      </div>
+                    )}
+                 </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-24 text-center">
+           <CTAButton className="w-full max-w-md">Obtenha acesso instantâneo — R$ 27</CTAButton>
+        </div>
+      </Section>
+
+      {/* PARA QUEM É ESTE PRODUTO? */}
+      <Section className="py-24">
+        <div className="text-center mb-16">
+          <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">PARA QUEM É ESTE PRODUTO?</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Para quem é este produto?</h2>
+          <p className="text-[#A9B4C7] max-w-2xl mx-auto text-sm md:text-base">O PromptPlates foi projetado especificamente para proprietários de ofertas digitais de baixo valor.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { title: "Proprietários de ofertas de baixo custo", desc: "Venda de produtos com preço inferior a R$ 100." },
+            { title: "Vendedores de Produtos de Informação", desc: "E-books, guias, modelos." },
+            { title: "Criadores de Produtos Digitais", desc: "Cursos, adesões, ferramentas." },
+            { title: "Criadores de Cursos", desc: "Educação e treinamento online." },
+            { title: "Treinadores e Consultores", desc: "Ofertas digitais de nível básico." },
+            { title: "Qual qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
+          ].map((item, idx) => (
+            <div key={idx} className="p-6 bg-[#101A2E] border border-white/5 rounded-xl hover:border-[#7B5CFF]/30 transition-colors">
+              <h4 className="font-bold text-white mb-2 text-sm md:text-base">{item.title}</h4>
+              <p className="text-xs text-[#A9B4C7]">{item.desc}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Seção 9: Prova Lógica */}
-      <Section alternate>
-        <div className="max-w-3xl mx-auto">
-          <h2 className="font-heading text-2xl md:text-3xl text-center mb-12 font-bold">Por que isso funciona matematicamente?</h2>
-          <div className="space-y-8 text-[#A9B4C7] text-sm leading-relaxed">
-            <p>Anúncios de baixo ticket precisam de um <strong>Custo por Clique (CPC)</strong> extremamente baixo e um <strong>CTR (Taxa de Cliques)</strong> alto para serem lucrativos.</p>
-            <p>Nossos modelos não focam apenas em "ser bonito", eles focam em gatilhos de curiosidade, urgência e prova social visual. Ao aumentar o seu CTR em apenas 1%, você pode reduzir o seu custo de aquisição pela metade.</p>
-            <p className="bg-[#0B1220] p-6 rounded-2xl border-l-4 border-[#7B5CFF] text-white font-medium">
-              "Não é sorte, é engenharia reversa do que as plataformas de anúncios recompensam: engajamento e retenção."
-            </p>
+      {/* QUEM CRIOU ISSO (FRANCIS) */}
+      <Section alternate className="py-24">
+        <div className="text-center mb-16">
+          <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">QUEM CRIOU ISSO?</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Conheça Francis</h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="relative">
+             <div className="aspect-square bg-[#0B1220] rounded-3xl overflow-hidden border border-white/10 relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-40">
+                   <User className="w-32 h-32" />
+                </div>
+                <div className="absolute bottom-6 left-6 z-20">
+                   <p className="text-[10px] text-[#7B5CFF] uppercase font-black tracking-widest mb-1">Criador do PromptPlates</p>
+                   <h4 className="text-2xl font-black">Francis Sprenger</h4>
+                </div>
+             </div>
+          </div>
+
+          <div className="space-y-8">
+            <div className="grid grid-cols-2 gap-4">
+               <div className="p-6 bg-[#0B1220] border border-white/5 rounded-2xl">
+                  <h4 className="text-2xl font-black text-[#7B5CFF] mb-1">Mais de 18 mil</h4>
+                  <p className="text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest">Vendas geradas</p>
+               </div>
+               <div className="p-6 bg-[#0B1220] border border-white/5 rounded-2xl">
+                  <h4 className="text-2xl font-black text-[#7B5CFF] mb-1">Mais de R$ 715 mil</h4>
+                  <p className="text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest">Orientado para a receita</p>
+               </div>
+               <div className="p-6 bg-[#0B1220] border border-white/5 rounded-2xl">
+                  <h4 className="text-2xl font-black text-[#7B5CFF] mb-1">50+</h4>
+                  <p className="text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest">Clientes atendidos</p>
+               </div>
+               <div className="p-6 bg-[#0B1220] border border-white/5 rounded-2xl">
+                  <h4 className="text-2xl font-black text-[#7B5CFF] mb-1">5+</h4>
+                  <p className="text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest">Anos de experiência</p>
+               </div>
+            </div>
+
+            <div className="text-[#A9B4C7] text-sm md:text-base space-y-6 leading-relaxed">
+              <p>Passei anos gerenciando anúncios Meta especificamente para produtos digitais de baixo valor.</p>
+              <p>Depois de criar milhares de anúncios criativos e testar o que realmente converte, percebi que as mesmas estruturas visuais continuavam a vencer repetidamente.</p>
+              <p>Então, transformei esses padrões vencedores em PromptPlates — prompts de IA que recriam esses estilos de alto desempenho em segundos.</p>
+              <p>Esses não são modelos genéricos de alguém que nunca veiculou um anúncio. Eles são baseados em campanhas reais que geraram <strong className="text-white">mais de 18.000 compras</strong> e <strong className="text-white">mais de R$ 715.000 em receita de baixo valor</strong>.</p>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* Seção 10: Oferta */}
-      <Section className="text-center py-24 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[#7B5CFF]/5 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="max-w-xl mx-auto bg-[#101A2E] p-12 rounded-[3rem] border border-[#7B5CFF]/20 shadow-2xl relative z-10">
-          <span className="text-[#7B5CFF] font-bold text-[10px] uppercase tracking-widest mb-6 block">Oferta Exclusiva</span>
-          <h2 className="font-heading text-3xl md:text-4xl mb-6 font-bold">Acesso Vitalício</h2>
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="text-[#A9B4C7] line-through text-xl opacity-40">R$ 197</span>
-            <span className="text-6xl font-black text-white">R$ 27</span>
+      {/* OFERTA FINAL */}
+      <Section className="py-24">
+        <div className="max-w-2xl mx-auto bg-[#101A2E] p-12 md:p-16 rounded-[3rem] border border-white/10 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-[#7B5CFF]"></div>
+          <span className="text-[#7B5CFF] text-[10px] font-black uppercase tracking-[0.3em] mb-8 block">Oferta por tempo limitado</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Obtenha todos os 10 PromptPlates</h2>
+          <p className="text-[#A9B4C7] text-sm md:text-base mb-12">Pare de tentar adivinhar com sugestões genéricas de IA. Obtenha modelos comprovadamente eficazes na criação de imagens de anúncios de alta conversão.</p>
+          
+          <div className="space-y-4 mb-12 max-w-xs mx-auto text-left">
+            <div className="flex gap-3 items-center text-sm font-bold text-white/80"><CheckCircle2 className="w-5 h-5 text-[#7B5CFF]"/> 10 PromptPlates (PDF)</div>
+            <div className="flex gap-3 items-center text-sm font-bold text-white/80"><CheckCircle2 className="w-5 h-5 text-[#7B5CFF]"/> Treinamento em vídeo</div>
+            <div className="flex gap-3 items-center text-sm font-bold text-white/80"><CheckCircle2 className="w-5 h-5 text-[#7B5CFF]"/> Acesso instantâneo</div>
           </div>
-          <p className="text-xs text-[#A9B4C7] mb-10 leading-relaxed font-medium">
-            Toda a estrutura, todos os prompts e o guia de escala por um valor simbólico de lançamento.
-          </p>
-          <CTAButton className="w-full">QUERO ESCALAR MEU LOW TICKET AGORA</CTAButton>
-          <div className="mt-8 flex items-center justify-center gap-4 text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest">
-            <div className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-green-500" /> Seguro</div>
-            <div className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-green-500" /> Vitalício</div>
-            <div className="flex items-center gap-1"><Clock className="w-3 h-3 text-green-500" /> Imediato</div>
+
+          <div className="flex flex-col items-center gap-2 mb-10">
+            <span className="text-[#A9B4C7] line-through text-lg">R$ 97</span>
+            <span className="text-7xl font-black text-white leading-none">R$ 27</span>
+            <span className="text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest mt-2">Pagamento único. Acesso vitalício.</span>
+          </div>
+
+          <CTAButton className="w-full mb-6 text-lg">Tenha acesso instantâneo agora mesmo</CTAButton>
+          
+          <div className="flex items-center justify-center gap-2 text-[#A9B4C7] text-[10px] uppercase tracking-wider">
+            <ShieldCheck className="w-3 h-3 text-white/40" /> Garantia de reembolso de 7 dias — Sem perguntas.
           </div>
         </div>
       </Section>
 
-      {/* Seção 11: Garantia */}
-      <Section alternate className="text-center">
-        <div className="max-w-xl mx-auto">
-          <ShieldCheck className="w-16 h-16 text-[#7B5CFF] mx-auto mb-6" />
-          <h2 className="font-heading text-2xl mb-4 font-bold">Garantia Blindada de 7 Dias</h2>
-          <p className="text-[#A9B4C7] text-sm leading-relaxed mb-8">
-            Se você aplicar o que está no guia e não sentir que seus anúncios subiram de nível, nós devolvemos 100% do seu investimento. Sem perguntas, sem burocracia. O risco é todo meu.
-          </p>
+      {/* GARANTIA DETALHADA */}
+      <Section alternate className="text-center py-24">
+        <div className="max-w-3xl mx-auto space-y-12">
+          <div className="bg-[#7B5CFF] text-white p-8 rounded-3xl flex flex-col md:flex-row items-center justify-center gap-6">
+             <ShieldCheck className="w-16 h-16 shrink-0" />
+             <h2 className="text-3xl font-black uppercase tracking-tighter">Garantia de reembolso de 7 dias</h2>
+          </div>
+
+          <div className="space-y-8">
+            <h3 className="text-3xl md:text-5xl font-black text-white leading-tight">Sua compra está garantida pela nossa garantia.</h3>
+            <div className="bg-[#7B5CFF] h-1 w-24 mx-auto"></div>
+            <h4 className="text-2xl md:text-3xl font-bold text-[#7B5CFF] uppercase tracking-widest italic">Garantia incondicional de reembolso</h4>
+          </div>
+
+          <div className="text-[#A9B4C7] text-sm md:text-base leading-relaxed text-left space-y-6 max-w-2xl mx-auto">
+            <p>Eu sei que antes de me envolver com qualquer coisa... quero saber o que estou comprando e que isso seja respaldado por uma garantia sólida de reembolso.</p>
+            <p>Eu quero que você se sinta confortável com essa compra.</p>
+            <p>E mesmo que sejam apenas 27 reais, você trabalhou por esse dinheiro e ele conta.</p>
+            <p>Então, aqui está o que eu organizei:</p>
+            <p>Adquira o PromptPlates, use os modelos, assista ao treinamento e, o mais importante, crie algumas imagens de anúncios com eles.</p>
+            <p>E se você não estiver feliz por qualquer motivo...</p>
+            <p>Então, basta nos enviar um e-mail para <span className="text-white font-bold">francis@ltroads.com</span> e solicitar um reembolso dentro de 7 dias.</p>
+            <p>Reembolsaremos seus R$ 27 sem <strong className="text-white">perguntas</strong> e <strong className="text-white">sem condições</strong>.</p>
+            <p>Que tal essa garantia de reembolso?</p>
+            <p className="font-bold text-white italic">Eu diria que é muito bom.</p>
+          </div>
         </div>
       </Section>
 
-      {/* Seção 12: FAQ */}
+      {/* FAQ */}
       <Section>
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-heading text-2xl md:text-3xl text-center mb-12 font-bold">Dúvidas Frequentes</h2>
-          <div className="space-y-1">
-            <FAQItem question="Funciona para qualquer nicho?" answer="Sim! As estruturas são baseadas em psicologia de consumo, que é universal. Funciona para saúde, negócios, relacionamentos, pets, hobbies, etc." />
-            <FAQItem question="Preciso de experiência com anúncios?" answer="Não. O guia foi feito para que até quem nunca abriu o Gerenciador de Anúncios consiga gerar criativos de alta qualidade." />
-            <FAQItem question="Preciso aparecer nos anúncios?" answer="De jeito nenhum. Os prompts são focados em criativos de imagem e texto que não dependem da sua imagem pessoal." />
-            <FAQItem question="Funciona com pouco orçamento?" answer="Sim. Na verdade, é ideal para quem tem pouco orçamento, pois você economiza dinheiro ao não testar criativos que já sabemos que falham." />
-            <FAQItem question="Como recebo o acesso?" answer="O acesso é enviado automaticamente para o seu e-mail assim que a compra é confirmada." />
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">Perguntas frequentes</h2>
+          <div className="space-y-2">
+            <FAQItem 
+              question="Com quais ferramentas de IA isso funciona?" 
+              answer="O PromptPlates funciona com qualquer gerador de imagens por IA, incluindo ChatGPT, Midjourney, DALL-E e outras ferramentas populares. Os prompts foram projetados para serem universalmente compatíveis." 
+            />
+            <FAQItem 
+              question="Preciso ter alguma experiência prévia em engenharia?" 
+              answer="De jeito nenhum. São totalmente plug-and-play. Basta colar o texto, adicionar os detalhes da sua oferta no final e gerar. Nenhuma edição ou ajuste é necessário." 
+            />
+            <FAQItem 
+              question="Para que tipo de ofertas estas foram concebidas?" 
+              answer="Os PromptPlates são projetados especificamente para ofertas digitais de baixo valor — geralmente produtos com preço inferior a R$ 100. Isso inclui e-books, cursos, modelos, assinaturas e outros infoprodutos." 
+            />
+            <FAQItem 
+              question="Em que se diferenciam de outros modelos de prompts?" 
+              answer="Esses anúncios foram criados por uma equipe que gerou mais de R$ 715 mil em vendas de baixo valor e mais de 18 mil compras. Os textos de venda são baseados em anúncios reais de alta conversão, não em modelos genéricos." 
+            />
+            <FAQItem 
+              question="E se não funcionarem para mim?" 
+              answer="Você está coberto pela nossa garantia de reembolso de 7 dias. Se por qualquer motivo você não estiver satisfeito, basta entrar em contato conosco e reembolsaremos o seu valor pago, sem perguntas." 
+            />
+            <FAQItem 
+              question="Como faço para receber o produto?" 
+              answer="Imediatamente após a compra, você terá acesso ao PDF do PromptPlates e ao treinamento em vídeo para download. Tudo é entregue digitalmente para acesso instantâneo." 
+            />
           </div>
         </div>
       </Section>
 
-      {/* CTA FINAL */}
-      <Section alternate className="text-center py-24 bg-gradient-to-b from-[#101A2E] to-[#0B1220]">
-        <h2 className="font-heading text-2xl md:text-4xl mb-10 leading-tight font-bold">O próximo anúncio que você subir pode ser o que vai mudar o seu jogo.</h2>
-        <div className="flex flex-col items-center gap-6 px-4">
-          <CTAButton className="w-full max-w-md">GARANTIR MEU ACESSO AGORA</CTAButton>
-          <p className="text-[10px] text-[#A9B4C7] uppercase tracking-widest font-black opacity-60">Pagamento único. Acesso vitalício. Garantia de 7 dias.</p>
+      {/* FINAL CTA BOX */}
+      <Section className="pb-24">
+        <div className="max-w-4xl mx-auto bg-[#101A2E] p-12 md:p-20 rounded-[3rem] border border-white/5 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Pronto para criar anúncios que realmente convertem?</h2>
+          <p className="text-[#A9B4C7] text-lg mb-12">Adquira todos os 10 PromptPlates + o treinamento em vídeo por apenas R$ 27.</p>
+          
+          <CTAButton className="w-full max-w-md mx-auto mb-8 text-lg py-5">Obtenha acesso instantâneo — R$ 27</CTAButton>
+          
+          <div className="space-y-4">
+             <p className="text-[10px] text-[#A9B4C7] uppercase font-bold tracking-widest">Pagamento único. Acesso vitalício. Garantia de 7 dias.</p>
+             <div className="flex items-center justify-center gap-2 text-[#7B5CFF] text-[12px] font-black uppercase tracking-widest bg-[#7B5CFF]/10 py-3 px-6 rounded-full inline-flex">
+                <ShieldCheck className="w-5 h-5" /> Garantia de reembolso de 7 dias
+             </div>
+          </div>
         </div>
       </Section>
 
