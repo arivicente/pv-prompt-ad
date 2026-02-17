@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ChevronDown, 
   CheckCircle2, 
@@ -56,6 +56,18 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 // --- Main App ---
 
 export default function App() {
+  useEffect(() => {
+    // Inject Vturb Player Script
+    const script = document.createElement("script");
+    script.src = "https://scripts.converteai.net/b96e0cf1-43f2-49ad-8865-5854d688debb/players/6993c734a498670b2aa28675/v4/player.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="font-sans text-white bg-[#0B1220] antialiased">
       
@@ -69,9 +81,15 @@ export default function App() {
           Aumente as vendas do seu <span className="text-[#7B5CFF]">low ticket</span> usando modelos de anúncios comprovados para criar e escalar campanhas de alta conversão de forma rápida e direta.
         </h1>
         
-        <p className="text-[10px] sm:text-xs md:text-base text-[#A9B4C7] mb-10 max-w-none mx-auto leading-relaxed px-4 whitespace-nowrap font-medium">
+        <p className="text-[10px] sm:text-xs md:text-base text-[#A9B4C7] mb-8 max-w-none mx-auto leading-relaxed px-4 whitespace-nowrap font-medium">
           Basta colar, adicionar os detalhes da sua oferta e gerar.
         </p>
+
+        {/* VSL SECTION */}
+        <div className="max-w-3xl mx-auto mb-10 overflow-hidden rounded-2xl border border-white/10 shadow-[0_0_50px_rgba(123,92,255,0.1)]">
+          {/* @ts-ignore */}
+          <vturb-smartplayer id="vid-6993c734a498670b2aa28675" style={{ display: 'block', margin: '0 auto', width: '100%' }}></vturb-smartplayer>
+        </div>
 
         <div className="flex flex-col items-center gap-4 mb-14">
           <CTAButton className="w-full max-w-md">QUERO ACESSO IMEDIATO</CTAButton>
