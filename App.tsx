@@ -9,7 +9,8 @@ import {
   BadgeCheck, 
   User, 
   Download, 
-  PlayCircle 
+  PlayCircle,
+  X
 } from 'lucide-react';
 
 // --- Reusable Components ---
@@ -21,7 +22,7 @@ const CTAButton: React.FC<{ children: React.ReactNode; className?: string }> = (
   </button>
 );
 
-const Section: React.FC<{ children: React.ReactNode; className?: string; alternate?: boolean }> = ({ children, className = "", alternate }) => (
+const Section: React.FC<{ children: React.ReactNode; className?: string; alternate?: boolean }> = ({ children, className = "" , alternate }) => (
   <section className={`py-12 md:py-20 px-5 ${alternate ? 'bg-[#101A2E]' : 'bg-[#0B1220]'} ${className}`}>
     <div className="max-w-4xl mx-auto">
       {children}
@@ -50,6 +51,8 @@ const FAQItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 // --- Main App ---
 
 export default function App() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   useEffect(() => {
     // Inject Vturb Player Script
     const script = document.createElement("script");
@@ -65,15 +68,36 @@ export default function App() {
   }, []);
 
   const resultsImages = [
-    { label: "Anúncio #1", url: "https://ibb.co/jZf8cdFy", direct: "https://i.ibb.co/jZf8cdFy/image.png" },
-    { label: "Anúncio #2", url: "https://ibb.co/5xWTrBtT", direct: "https://i.ibb.co/5xWTrBtT/image.png" },
-    { label: "Anúncio #3", url: "https://ibb.co/4Z42JQw5", direct: "https://i.ibb.co/4Z42JQw5/image.png" },
-    { label: "Anúncio #4", url: "https://ibb.co/nN2JpSHN", direct: "https://i.ibb.co/nN2JpSHN/image.png" }
+    { label: "Anúncio #1", url: "https://i.ibb.co/jZf8cdFy/image.png" },
+    { label: "Anúncio #2", url: "https://i.ibb.co/5xWTrBtT/image.png" },
+    { label: "Anúncio #3", url: "https://i.ibb.co/4Z42JQw5/image.png" },
+    { label: "Anúncio #4", url: "https://i.ibb.co/nN2JpSHN/image.png" }
   ];
 
   return (
     <div className="font-sans text-white bg-[#0B1220] antialiased">
       
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-10 transition-all duration-300 backdrop-blur-sm"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <img 
+            src={selectedImage} 
+            alt="Anúncio Ampliado" 
+            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in fade-in zoom-in duration-300"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+
       {/* HERO SECTION */}
       <Section className="pt-6 md:pt-10 pb-6 md:pb-10 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#7B5CFF] text-[9px] md:text-[10px] font-bold mb-6 uppercase tracking-widest whitespace-nowrap">
@@ -81,7 +105,7 @@ export default function App() {
         </div>
         
         <h1 className="font-heading text-xl md:text-4xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
-          Aumente as vendas do seu <span className="text-[#7B5CFF]">funil low ticket</span> com modelos comprovados de prompts para criar anúncios que convertem
+          Aumente as vendas do seu low ticket usando modelos de anúncios comprovados para criar e escalar campanhas de alta conversão de forma rápida e direta.
         </h1>
         
         <p className="text-xs md:text-lg text-[#A9B4C7] mb-8 max-w-2xl mx-auto leading-relaxed px-4 font-medium">
@@ -102,26 +126,26 @@ export default function App() {
         </div>
       </Section>
 
-      {/* STATS SECTION - AJUSTE DE HARMONIA DE FONTES */}
-      <Section alternate className="text-center py-20 md:py-32 border-y border-white/5">
+      {/* STATS SECTION */}
+      <Section alternate className="text-center py-16 md:py-28 border-y border-white/5">
         <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-base md:text-xl font-medium text-[#A9B4C7] mb-12 uppercase tracking-[0.3em] opacity-80">
+          <h2 className="text-base md:text-xl font-medium text-[#A9B4C7] mb-12 uppercase tracking-[0.2em] opacity-80">
             Esses anúncios contribuíram para...
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            <div className="flex flex-col items-center space-y-3">
-              <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
-                R$ 715k+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-6xl font-black text-white mb-2 tracking-tighter">
+                Mais de R$ 715 mil
               </span>
-              <span className="text-[#A9B4C7] text-xs md:text-sm font-bold uppercase tracking-[0.1em] px-4 py-1.5 bg-white/5 rounded-full border border-white/10">
+              <span className="text-[#7B5CFF] text-[10px] md:text-xs font-bold uppercase tracking-widest">
                 Vendas de Low Ticket
               </span>
             </div>
-            <div className="flex flex-col items-center space-y-3">
-              <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
-                18.000+
+            <div className="flex flex-col items-center">
+              <span className="text-4xl md:text-6xl font-black text-white mb-2 tracking-tighter">
+                Mais de 18.000
               </span>
-              <span className="text-[#A9B4C7] text-xs md:text-sm font-bold uppercase tracking-[0.1em] px-4 py-1.5 bg-white/5 rounded-full border border-white/10">
+              <span className="text-[#7B5CFF] text-[10px] md:text-xs font-bold uppercase tracking-widest">
                 Produtos Vendidos
               </span>
             </div>
@@ -140,24 +164,11 @@ export default function App() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative group">
             <div className="absolute inset-0 bg-[#7B5CFF]/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-[#7B5CFF]/30 transition-all"></div>
-            <div className="relative bg-gradient-to-br from-[#101A2E] to-[#0B1220] p-1 border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="relative bg-[#101A2E] border border-white/10 rounded-2xl shadow-2xl overflow-hidden aspect-[4/5] cursor-zoom-in" onClick={() => setSelectedImage("https://i.ibb.co/HD915R5w/image.png")}>
               <img 
                 src="https://i.ibb.co/HD915R5w/image.png" 
-                alt="PromptPlates Mockup" 
-                className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.02]"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const placeholder = document.createElement('div');
-                  placeholder.className = "bg-[#0B1220] aspect-[4/5] flex items-center justify-center p-8 text-center border border-white/5 rounded-xl";
-                  placeholder.innerHTML = `
-                    <div class="space-y-4">
-                      <h4 class="text-2xl font-black leading-tight mb-2 text-white uppercase">LOW TICKET AD <br/><span class="text-[#7B5CFF]">PROMPTPLATES</span></h4>
-                      <p class="text-[10px] text-[#A9B4C7] uppercase tracking-widest font-bold">Plug-and-play image prompt templates</p>
-                    </div>
-                  `;
-                  target.parentElement!.appendChild(placeholder);
-                }}
+                alt="PromptPlates Mockup Principal" 
+                className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.03]"
               />
             </div>
           </div>
@@ -195,7 +206,7 @@ export default function App() {
         </div>
       </Section>
 
-      {/* RESULTADOS REAIS - ATUALIZAÇÃO COM LINKS FORNECIDOS */}
+      {/* RESULTADOS REAIS - COM LIGHTBOX FUNCIONAL */}
       <Section alternate>
         <div className="text-center mb-16">
           <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">RESULTADOS REAIS</span>
@@ -205,35 +216,23 @@ export default function App() {
 
         <div className="grid grid-cols-2 gap-4">
           {resultsImages.map((img, i) => (
-            <a 
+            <div 
               key={i} 
-              href={img.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="aspect-square bg-[#0B1220] rounded-2xl border border-white/10 flex items-center justify-center group cursor-pointer overflow-hidden relative"
+              onClick={() => setSelectedImage(img.url)}
+              className="aspect-square bg-[#0B1220] rounded-2xl border border-white/10 flex items-center justify-center group cursor-zoom-in overflow-hidden relative shadow-lg"
             >
               <img 
-                src={img.direct} 
-                alt={img.label}
-                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const placeholder = document.createElement('div');
-                  placeholder.className = "w-full h-full bg-[#101A2E] flex items-center justify-center p-4 text-center";
-                  placeholder.innerHTML = `<span class="text-[10px] font-bold opacity-30 uppercase tracking-widest">${img.label}</span>`;
-                  target.parentElement!.appendChild(placeholder);
-                }}
+                src={img.url} 
+                alt={img.label} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                <span className="text-[10px] font-bold text-white uppercase tracking-widest">Ver Exemplo Real</span>
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-[10px] font-black uppercase tracking-widest text-white border border-white/40 px-3 py-1 bg-black/50 rounded">Ampliar {img.label}</span>
               </div>
-            </a>
+            </div>
           ))}
         </div>
-        <p className="text-center mt-10 text-[#A9B4C7] text-[11px] font-bold uppercase tracking-[0.3em] animate-pulse">
-          Clique nas imagens para ampliar
-        </p>
+        <p className="text-center mt-6 text-[#A9B4C7] text-[10px] font-bold uppercase tracking-[0.3em] animate-pulse">Clique para ampliar</p>
       </Section>
 
       {/* O PROBLEMA */}
@@ -337,7 +336,7 @@ export default function App() {
           ))}
         </div>
 
-        <div className="mt-24 text-center px-4">
+        <div className="mt-24 text-center">
            <CTAButton className="w-full max-w-md">Obtenha acesso instantâneo — R$ 27</CTAButton>
         </div>
       </Section>
@@ -357,7 +356,7 @@ export default function App() {
             { title: "Criadores de Produtos Digitais", desc: "Cursos, adesões, ferramentas." },
             { title: "Criadores de Cursos", desc: "Educação e treinamento online." },
             { title: "Treinadores e Consultores", desc: "Ofertas digitais de nível básico." },
-            { title: "Qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
+            { title: "Qual qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
           ].map((item, idx) => (
             <div key={idx} className="p-6 bg-[#101A2E] border border-white/5 rounded-xl hover:border-[#7B5CFF]/30 transition-colors">
               <h4 className="font-bold text-white mb-2 text-sm md:text-base">{item.title}</h4>
@@ -420,7 +419,7 @@ export default function App() {
 
       {/* OFERTA FINAL */}
       <Section className="py-24">
-        <div className="max-w-2xl mx-auto bg-[#101A2E] p-12 md:p-16 rounded-[3rem] border border-white/10 text-center relative overflow-hidden shadow-[0_0_100px_rgba(123,92,255,0.15)]">
+        <div className="max-w-2xl mx-auto bg-[#101A2E] p-12 md:p-16 rounded-[3rem] border border-white/10 text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 left-0 w-full h-1 bg-[#7B5CFF]"></div>
           <span className="text-[#7B5CFF] text-[10px] font-black uppercase tracking-[0.3em] mb-8 block">Oferta por tempo limitado</span>
           <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Obtenha todos os 10 PromptPlates</h2>
