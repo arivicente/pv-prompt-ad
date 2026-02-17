@@ -4,20 +4,12 @@ import {
   ChevronDown, 
   CheckCircle2, 
   ArrowRight, 
-  Layout, 
-  Clock, 
   ShieldCheck, 
-  TrendingUp, 
   XCircle, 
-  Sparkles, 
-  MousePointer2, 
-  FileText, 
-  HelpCircle,
-  BadgeCheck,
-  User,
-  Zap,
-  Download,
-  PlayCircle
+  BadgeCheck, 
+  User, 
+  Download, 
+  PlayCircle 
 } from 'lucide-react';
 
 // --- Reusable Components ---
@@ -72,17 +64,24 @@ export default function App() {
     };
   }, []);
 
+  const resultsImages = [
+    { label: "Anúncio #1", url: "https://ibb.co/jZf8cdFy", direct: "https://i.ibb.co/jZf8cdFy/image.png" },
+    { label: "Anúncio #2", url: "https://ibb.co/5xWTrBtT", direct: "https://i.ibb.co/5xWTrBtT/image.png" },
+    { label: "Anúncio #3", url: "https://ibb.co/4Z42JQw5", direct: "https://i.ibb.co/4Z42JQw5/image.png" },
+    { label: "Anúncio #4", url: "https://ibb.co/nN2JpSHN", direct: "https://i.ibb.co/nN2JpSHN/image.png" }
+  ];
+
   return (
     <div className="font-sans text-white bg-[#0B1220] antialiased">
       
-      {/* HERO SECTION - MANTIDA INTACTA */}
+      {/* HERO SECTION */}
       <Section className="pt-6 md:pt-10 pb-6 md:pb-10 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#7B5CFF] text-[9px] md:text-[10px] font-bold mb-6 uppercase tracking-widest whitespace-nowrap">
-          <BadgeCheck className="w-3 h-3" /> Para proprietários de ofertas de baixo custo
+          <BadgeCheck className="w-3 h-3" /> Para Criadores de ofertas Low Ticket
         </div>
         
         <h1 className="font-heading text-xl md:text-4xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
-          Aumente as vendas do seu <span className="text-[#7B5CFF]">funil de baixo custo</span> com estes modelos de anúncios criativos comprovados.
+          Aumente as vendas do seu <span className="text-[#7B5CFF]">funil low ticket</span> com modelos comprovados de prompts para criar anúncios que convertem
         </h1>
         
         <p className="text-xs md:text-lg text-[#A9B4C7] mb-8 max-w-2xl mx-auto leading-relaxed px-4 font-medium">
@@ -103,28 +102,26 @@ export default function App() {
         </div>
       </Section>
 
-      {/* --- ESTRUTURA APÓS A HERO --- */}
-
-      {/* STATS SECTION - DESIGN HARMONIZADO BASEADO NA IMAGEM */}
+      {/* STATS SECTION - AJUSTE DE HARMONIA DE FONTES */}
       <Section alternate className="text-center py-20 md:py-32 border-y border-white/5">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-12 md:mb-16 leading-tight tracking-tight">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="text-base md:text-xl font-medium text-[#A9B4C7] mb-12 uppercase tracking-[0.3em] opacity-80">
             Esses anúncios contribuíram para...
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tighter">
-                Mais de R$ 715 mil
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+            <div className="flex flex-col items-center space-y-3">
+              <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
+                R$ 715k+
               </span>
-              <span className="text-[#A9B4C7] text-sm md:text-base font-medium opacity-80">
+              <span className="text-[#A9B4C7] text-xs md:text-sm font-bold uppercase tracking-[0.1em] px-4 py-1.5 bg-white/5 rounded-full border border-white/10">
                 Vendas de Low Ticket
               </span>
             </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-6xl font-bold text-white mb-3 tracking-tighter">
-                Mais de 18.000
+            <div className="flex flex-col items-center space-y-3">
+              <span className="text-5xl md:text-7xl font-black text-white tracking-tighter">
+                18.000+
               </span>
-              <span className="text-[#A9B4C7] text-sm md:text-base font-medium opacity-80">
+              <span className="text-[#A9B4C7] text-xs md:text-sm font-bold uppercase tracking-[0.1em] px-4 py-1.5 bg-white/5 rounded-full border border-white/10">
                 Produtos Vendidos
               </span>
             </div>
@@ -143,14 +140,25 @@ export default function App() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative group">
             <div className="absolute inset-0 bg-[#7B5CFF]/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-[#7B5CFF]/30 transition-all"></div>
-            <div className="relative bg-gradient-to-br from-[#101A2E] to-[#0B1220] p-1 border border-white/10 rounded-2xl shadow-2xl">
-              <div className="bg-[#0B1220] rounded-xl overflow-hidden aspect-[4/5] flex items-center justify-center p-8">
-                <div className="w-full h-full border-4 border-[#7B5CFF]/40 rounded-lg flex flex-col justify-end p-6 bg-[#0B1220] relative overflow-hidden">
-                   <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#7B5CFF]/20 blur-3xl rounded-full"></div>
-                   <h4 className="text-2xl font-black leading-tight mb-2">LOW TICKET AD <br/><span className="text-[#7B5CFF]">PROMPTPLATES</span></h4>
-                   <p className="text-[10px] text-[#A9B4C7] uppercase tracking-widest font-bold">Plug-and-play image prompt templates</p>
-                </div>
-              </div>
+            <div className="relative bg-gradient-to-br from-[#101A2E] to-[#0B1220] p-1 border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+              <img 
+                src="https://i.ibb.co/HD915R5w/image.png" 
+                alt="PromptPlates Mockup" 
+                className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.02]"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const placeholder = document.createElement('div');
+                  placeholder.className = "bg-[#0B1220] aspect-[4/5] flex items-center justify-center p-8 text-center border border-white/5 rounded-xl";
+                  placeholder.innerHTML = `
+                    <div class="space-y-4">
+                      <h4 class="text-2xl font-black leading-tight mb-2 text-white uppercase">LOW TICKET AD <br/><span class="text-[#7B5CFF]">PROMPTPLATES</span></h4>
+                      <p class="text-[10px] text-[#A9B4C7] uppercase tracking-widest font-bold">Plug-and-play image prompt templates</p>
+                    </div>
+                  `;
+                  target.parentElement!.appendChild(placeholder);
+                }}
+              />
             </div>
           </div>
 
@@ -187,7 +195,7 @@ export default function App() {
         </div>
       </Section>
 
-      {/* RESULTADOS REAIS */}
+      {/* RESULTADOS REAIS - ATUALIZAÇÃO COM LINKS FORNECIDOS */}
       <Section alternate>
         <div className="text-center mb-16">
           <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">RESULTADOS REAIS</span>
@@ -195,17 +203,37 @@ export default function App() {
           <p className="text-[#A9B4C7] max-w-2xl mx-auto text-sm md:text-base">Essas imagens de anúncios foram geradas usando exatamente as mesmas instruções que você encontrará no PromptPlates.</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="aspect-square bg-[#0B1220] rounded-xl border border-white/10 flex items-center justify-center p-2 group cursor-pointer overflow-hidden">
-              <div className="w-full h-full bg-[#101A2E] rounded-lg transition-transform group-hover:scale-105 flex items-center justify-center relative">
-                <div className="text-[10px] font-bold opacity-20 uppercase">Exemplo de Anúncio #{i}</div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="grid grid-cols-2 gap-4">
+          {resultsImages.map((img, i) => (
+            <a 
+              key={i} 
+              href={img.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="aspect-square bg-[#0B1220] rounded-2xl border border-white/10 flex items-center justify-center group cursor-pointer overflow-hidden relative"
+            >
+              <img 
+                src={img.direct} 
+                alt={img.label}
+                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const placeholder = document.createElement('div');
+                  placeholder.className = "w-full h-full bg-[#101A2E] flex items-center justify-center p-4 text-center";
+                  placeholder.innerHTML = `<span class="text-[10px] font-bold opacity-30 uppercase tracking-widest">${img.label}</span>`;
+                  target.parentElement!.appendChild(placeholder);
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <span className="text-[10px] font-bold text-white uppercase tracking-widest">Ver Exemplo Real</span>
               </div>
-            </div>
+            </a>
           ))}
         </div>
-        <p className="text-center mt-6 text-[#A9B4C7] text-[10px] font-bold uppercase tracking-widest">Clique para ampliar</p>
+        <p className="text-center mt-10 text-[#A9B4C7] text-[11px] font-bold uppercase tracking-[0.3em] animate-pulse">
+          Clique nas imagens para ampliar
+        </p>
       </Section>
 
       {/* O PROBLEMA */}
@@ -213,7 +241,7 @@ export default function App() {
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center leading-tight">Pare de perder horas com imagens de anúncios que não convertem.</h2>
           
-          <div className="bg-[#101A2E] p-8 md:p-12 rounded-[2rem] border border-white/5 space-y-10">
+          <div className="bg-[#101A2E] p-8 md:p-12 rounded-[2rem] border border-white/5 space-y-10 shadow-2xl">
             <div>
               <h3 className="text-lg md:text-xl font-bold mb-4">Você já tentou gerar imagens de anúncios com IA antes?</h3>
               <p className="text-[#A9B4C7] text-sm md:text-base leading-relaxed">Talvez até tenha comprado prompts ou modelos. Mas quando você realmente os utiliza como anúncios...</p>
@@ -309,7 +337,7 @@ export default function App() {
           ))}
         </div>
 
-        <div className="mt-24 text-center">
+        <div className="mt-24 text-center px-4">
            <CTAButton className="w-full max-w-md">Obtenha acesso instantâneo — R$ 27</CTAButton>
         </div>
       </Section>
@@ -329,7 +357,7 @@ export default function App() {
             { title: "Criadores de Produtos Digitais", desc: "Cursos, adesões, ferramentas." },
             { title: "Criadores de Cursos", desc: "Educação e treinamento online." },
             { title: "Treinadores e Consultores", desc: "Ofertas digitais de nível básico." },
-            { title: "Qual qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
+            { title: "Qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
           ].map((item, idx) => (
             <div key={idx} className="p-6 bg-[#101A2E] border border-white/5 rounded-xl hover:border-[#7B5CFF]/30 transition-colors">
               <h4 className="font-bold text-white mb-2 text-sm md:text-base">{item.title}</h4>
@@ -392,7 +420,7 @@ export default function App() {
 
       {/* OFERTA FINAL */}
       <Section className="py-24">
-        <div className="max-w-2xl mx-auto bg-[#101A2E] p-12 md:p-16 rounded-[3rem] border border-white/10 text-center relative overflow-hidden">
+        <div className="max-w-2xl mx-auto bg-[#101A2E] p-12 md:p-16 rounded-[3rem] border border-white/10 text-center relative overflow-hidden shadow-[0_0_100px_rgba(123,92,255,0.15)]">
           <div className="absolute top-0 left-0 w-full h-1 bg-[#7B5CFF]"></div>
           <span className="text-[#7B5CFF] text-[10px] font-black uppercase tracking-[0.3em] mb-8 block">Oferta por tempo limitado</span>
           <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Obtenha todos os 10 PromptPlates</h2>
@@ -421,7 +449,7 @@ export default function App() {
       {/* GARANTIA DETALHADA */}
       <Section alternate className="text-center py-24">
         <div className="max-w-3xl mx-auto space-y-12">
-          <div className="bg-[#7B5CFF] text-white p-8 rounded-3xl flex flex-col md:flex-row items-center justify-center gap-6">
+          <div className="bg-[#7B5CFF] text-white p-8 rounded-3xl flex flex-col md:flex-row items-center justify-center gap-6 shadow-xl">
              <ShieldCheck className="w-16 h-16 shrink-0" />
              <h2 className="text-3xl font-black uppercase tracking-tighter">Garantia de reembolso de 7 dias</h2>
           </div>
@@ -482,7 +510,7 @@ export default function App() {
 
       {/* FINAL CTA BOX */}
       <Section className="pb-24">
-        <div className="max-w-4xl mx-auto bg-[#101A2E] p-12 md:p-20 rounded-[3rem] border border-white/5 text-center">
+        <div className="max-w-4xl mx-auto bg-[#101A2E] p-12 md:p-20 rounded-[3rem] border border-white/5 text-center shadow-2xl">
           <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Pronto para criar anúncios que realmente convertem?</h2>
           <p className="text-[#A9B4C7] text-lg mb-12">Adquira todos os 10 PromptPlates + o treinamento em vídeo por apenas R$ 27.</p>
           
