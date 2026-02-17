@@ -65,7 +65,7 @@ export default function App() {
           <XCircle className="w-3 h-3" /> Anúncios falham por falta de atenção.
         </div>
         
-        <h1 className="font-heading text-2xl md:text-4xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
+        <h1 className="font-heading text-xl md:text-3xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
           Aumente as vendas do seu <span className="text-[#7B5CFF]">low ticket</span> usando modelos de anúncios comprovados para criar e escalar campanhas de alta conversão de forma rápida e direta.
         </h1>
         
@@ -76,7 +76,7 @@ export default function App() {
         <div className="flex flex-col items-center gap-4 mb-14">
           <CTAButton className="w-full max-w-md">QUERO ACESSO IMEDIATO</CTAButton>
           <div className="flex items-center gap-2 text-[#A9B4C7] text-[9px] uppercase tracking-wider mt-2">
-            <ShieldCheck className="w-3 h-3 text-green-500" /> Compra 100% Segura e Garantida
+            <ShieldCheck className="w-3 h-3 text-green-500" /> garantia de reembolso de 7 dias
           </div>
         </div>
 
