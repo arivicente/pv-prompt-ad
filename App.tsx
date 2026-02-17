@@ -105,7 +105,7 @@ export default function App() {
         </div>
         
         <h1 className="font-heading text-xl md:text-4xl mb-6 leading-[1.3] max-w-4xl mx-auto tracking-tight px-4 font-bold">
-          Aumente as vendas do seu low ticket usando modelos de anúncios comprovados para criar e escalar campanhas de alta conversão de forma rápida e direta.
+          Aumente as vendas do seu funil low ticket com modelos comprovados de prompts para criar anúncios que convertem
         </h1>
         
         <p className="text-xs md:text-lg text-[#A9B4C7] mb-8 max-w-2xl mx-auto leading-relaxed px-4 font-medium">
@@ -356,7 +356,7 @@ export default function App() {
             { title: "Criadores de Produtos Digitais", desc: "Cursos, adesões, ferramentas." },
             { title: "Criadores de Cursos", desc: "Educação e treinamento online." },
             { title: "Treinadores e Consultores", desc: "Ofertas digitais de nível básico." },
-            { title: "Qual qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
+            { title: "Qualquer pessoa que veicule anúncios meta", desc: "Para funis de baixo custo." }
           ].map((item, idx) => (
             <div key={idx} className="p-6 bg-[#101A2E] border border-white/5 rounded-xl hover:border-[#7B5CFF]/30 transition-colors">
               <h4 className="font-bold text-white mb-2 text-sm md:text-base">{item.title}</h4>
@@ -366,11 +366,11 @@ export default function App() {
         </div>
       </Section>
 
-      {/* QUEM CRIOU ISSO (FRANCIS) */}
+      {/* QUEM CRIOU ISSO (ARI VICENTE) */}
       <Section alternate className="py-24">
         <div className="text-center mb-16">
           <span className="text-[#7B5CFF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">QUEM CRIOU ISSO?</span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Conheça Francis</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Conheça Ari</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -382,7 +382,7 @@ export default function App() {
                 </div>
                 <div className="absolute bottom-6 left-6 z-20">
                    <p className="text-[10px] text-[#7B5CFF] uppercase font-black tracking-widest mb-1">Criador do PromptPlates</p>
-                   <h4 className="text-2xl font-black">Francis Sprenger</h4>
+                   <h4 className="text-2xl font-black">Ari Vicente</h4>
                 </div>
              </div>
           </div>
@@ -466,7 +466,7 @@ export default function App() {
             <p>Então, aqui está o que eu organizei:</p>
             <p>Adquira o PromptPlates, use os modelos, assista ao treinamento e, o mais importante, crie algumas imagens de anúncios com eles.</p>
             <p>E se você não estiver feliz por qualquer motivo...</p>
-            <p>Então, basta nos enviar um e-mail para <span className="text-white font-bold">francis@ltroads.com</span> e solicitar um reembolso dentro de 7 dias.</p>
+            <p>Então, basta nos enviar um e-mail para <span className="text-white font-bold">ari@ltroads.com</span> e solicitar um reembolso dentro de 7 dias.</p>
             <p>Reembolsaremos seus R$ 27 sem <strong className="text-white">perguntas</strong> e <strong className="text-white">sem condições</strong>.</p>
             <p>Que tal essa garantia de reembolso?</p>
             <p className="font-bold text-white italic">Eu diria que é muito bom.</p>
@@ -481,7 +481,7 @@ export default function App() {
           <div className="space-y-2">
             <FAQItem 
               question="Com quais ferramentas de IA isso funciona?" 
-              answer="O PromptPlates funciona com qualquer gerador de imagens por IA, incluindo ChatGPT, Midjourney, DALL-E e outras ferramentas populares. Os prompts foram projetados para serem universalmente compatíveis." 
+              answer="O PromptPlates funciona with any gerador de imagens por IA, incluindo ChatGPT, Midjourney, DALL-E e outras ferramentas populares. Os prompts foram projetados para serem universalmente compatíveis." 
             />
             <FAQItem 
               question="Preciso ter alguma experiência prévia em engenharia?" 
